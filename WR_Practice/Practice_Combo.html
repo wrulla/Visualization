@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--<script src="../dist-amd/amchart/CommonSerial.js"></script> <!-- WR added... unsure if useful -->
+    <script src="../dist-amd/hpcc-viz.js"></script>
+    <script src="../dist-amd/hpcc-bundles.js"></script>
+    <script src="../dist-amd/hpcc-viz-common.js"></script>
+    <script src="../dist-amd/amchart/amcharts.js"></script> <!-- WR added... unsure if useful -->
+    <!--<script src="../dist-amd/common/Class.js"></script> WR added... causes errors-->
+    <script>
+        require.config({
+            paths: {
+                "src": "../dist-amd",
+                "font-awesome": "../dist-amd/font-awesome/css/font-awesome.min"
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="myViz" style="width:800px; height:580px"></div>
+
+    <script>
+    // See https://www.amcharts.com/demos/column-and-line-mix/ -- somehow they've highlighted a data point and dashed part of the line
+        require(["src/amchart/Combo"], function (Combo) {       // what does this do?  Can't seem to change to Combo_WR
+            var myCol = new Combo()
+                .target("myViz")
+                .columns(["Subject", "Year 1", "Year 2", "Year 3"])
+                //.lines(["Year 4"]) // how to specify lines???
+                .data([
+                            ["Math", 66, 72, 69],
+                            ["History", 88, 82, 85],
+                            ["Science", 77, 78, 77.5]
+                ])
+                 .types(["column","line","column"])
+                .paletteID("category10") // default, category10, category20/b/c, Accent, Dark2, Paired, Pastel1, Pastel2, Set1-3, hpcc10/20
+                .stacked("blah") // seems to require a string argument... but argument doesn't do anything?
+                .stackType("none") // none, regular, 100%
+                .fontSize(15)
+                .fontColor("Red") // seems to just be the amCharts blurb?
+                .bulletType("none")
+                .selectionColor("Red") // does this do anything?
+                //.backwardsCompatible("false") // does this do anything?
+                //.backgroundColor("#FFFFFF") // doesn't work
+                //.color("#000000") // doesn't work
+                //.addTitle("blah") // doesn't work
+                .render()
+            ;
+        });
+    </script>
+
+</body>
+</html>
